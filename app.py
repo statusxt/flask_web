@@ -19,7 +19,7 @@ def call_proc(cmd):
 def filter_output(output, host):
     o_filter = ""
     for line in output.stdout:
-        o_filter = o_filter+line.encode('ascii')
+        o_filter = o_filter+str(line, 'utf-8')
 
     return_data = "%s" % host + " " +  o_filter
     return return_data
