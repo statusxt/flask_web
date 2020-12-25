@@ -1,3 +1,5 @@
+ARG DEBIAN_FRONTEND=noninteractive
+
 FROM ubuntu:20.04
 
 RUN apt-get update -y && \
