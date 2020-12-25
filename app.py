@@ -39,6 +39,45 @@ def ping(host=None):
         output = call_proc(cmd)
         return_data = filter_output(output, host)
         return render_template('center.html', return_data=return_data)
+
+@app.route('/tracert/')
+@app.route('/traceroute/')
+@app.route('/traceroute/<host>')
+@app.route('/tracert/<host>', alias=True)
+def traceroute(host=None):
+    if host is None:
+        return render_template('center.html')
+    else:
+        cmd = "traceroute -m 10 %s" % host
+        output = call_proc(cmd)
+        return_data = filter_output(output, host)
+        return render_template('center.html', return_data=return_data)
+
+
+@app.route('/dns-lookup/')
+@app.route('/lookup/')
+@app.route('/dns-lookup/<host>')
+@app.route('/lookup/<host>', alias=True)
+def dns_lookup(host=None):
+    if host is None:
+        return render_template('center.html')
+    else:
+        cmd = "nslookup %s 8.8.8.8" % host
+        output = call_proc(cmd)
+        return_data = filter_output(output, host)
+        return render_template('center.html', return_data=return_data)
+
+@app.route('/whois/')
+@app.route('/whois/<host>')
+def whois(host=None):
+    if host is None:
+        return render_template('center.html')
+    else:
+        cmd = "whois %s" % host
+        output = call_proc(cmd)
+        return_data = filter_output(output, host)
+        return render_template('center.html', return_data=return_data)
+
 @app.errorhandler(403)
 def forbidden():
     return render_template('center.html', return_data='Can\'t do that!' )
