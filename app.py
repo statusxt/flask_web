@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template
 import subprocess
 import telnetlib
-import urllib2
+import urllib
 
 user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
 headers = { 'User-Agent' : user_agent }
